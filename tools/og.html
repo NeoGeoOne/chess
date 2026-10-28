@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>og</title>
+<link rel="stylesheet" href="../public/fonts/fonts.css">
+<style>
+html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #0f1012; color: #e8e8ea; font-family: 'Instrument Sans', system-ui, sans-serif; }
+.bg { position: absolute; inset: 0; background:
+  radial-gradient(720px 520px at 300px 300px, rgba(255,255,255,.075), transparent 70%),
+  radial-gradient(900px 600px at 1050px 560px, rgba(41,82,227,.16), transparent 70%),
+  linear-gradient(180deg, #141518, #0f1012); }
+.grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(800px 500px at 320px 300px, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(800px 500px at 320px 300px, #000 20%, transparent 75%); }
+.wrap { position: relative; width: 1200px; height: 630px; display: flex; align-items: center; gap: 70px; padding: 0 76px; box-sizing: border-box; }
+.case { position: relative; padding: 18px; border-radius: 22px; background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.025)); border: 1px solid rgba(255,255,255,.16); box-shadow: 0 46px 90px rgba(0,0,0,.72), 0 0 0 1px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.2); }
+.case::before { content: ''; position: absolute; left: 18%; right: 18%; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.85), transparent); }
+.board { display: grid; grid-template-columns: repeat(8, 58px); grid-auto-rows: 58px; border-radius: 9px; overflow: hidden; border: 1px solid rgba(255,255,255,.16); box-shadow: inset 0 0 40px rgba(0,0,0,.45); }
+.sq { position: relative; }
+.sq img { position: absolute; inset: 6%; width: 88%; height: 88%; filter: drop-shadow(0 4px 4px rgba(0,0,0,.6)); }
+.coord { position: absolute; font-size: 10px; color: rgba(255,255,255,.45); }
+.cap { margin-top: 16px; display: flex; justify-content: space-between; font-size: 13px; color: #9aa0aa; }
+.cap b { color: #e8e8ea; font-weight: 600; }
+.text { flex: 1; min-width: 0; }
+.kicker { font-size: 13px; letter-spacing: .2em; color: #8d93a0; margin-bottom: 16px; }
+h1 { font-size: 132px; font-weight: 600; letter-spacing: -.045em; line-height: .9; margin: 0 0 26px; color: #fff; }
+.sub { font-size: 24px; color: #c4c7ce; line-height: 1.4; max-width: 520px; }
+.sub b { color: #fff; font-weight: 600; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.pill { font-size: 14px; padding: 8px 14px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; color: #d8dbe0; background: rgba(255,255,255,.05); }
+.foot { position: absolute; left: 76px; right: 76px; bottom: 30px; display: flex; justify-content: space-between; font-size: 13px; letter-spacing: .18em; color: #6f7480; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="grid"></div>
+<div class="wrap">
+  <div>
+    <div class="case"><div class="board" id="b"></div></div>
+    <div class="cap" style="width:500px"><span><b>Anderssen – Kieseritzky</b>, London 1851</span><span>The Immortal Game · 23.Be7#</span></div>
+  </div>
+  <div class="text">
+    <div class="kicker">FREE / OPEN SOURCE</div>
+    <h1>chess</h1>
+    <div class="sub">Play the computer up to <b>Stockfish</b> strength, pass &amp; play, <b>2,000 puzzles</b>, <b>50 famous games</b> and engine analysis.</div>
+    <div class="pills"><span class="pill">Free forever</span><span class="pill">No account</span><span class="pill">No tracking</span></div>
+  </div>
+</div>
+<div class="foot"><span></span><span>EVERYTHING STAYS ON YOUR DEVICE</span></div>
+<script>
+// Final position of the Immortal Game after 23.Be7#: black king mated on d8.
+const fen = 'r1bk3r/p2pBpNp/n4n2/1p1NP2P/6P1/3P4/P1P1K3/q5b1';
+const LAST = [19, 12]; // d6 → e7 (index = row * 8 + file, row 0 = rank 8)
+const CHECK = 3;       // d8
+const b = document.getElementById('b');
+let i = 0;
+for (const ch of fen) {
+  if (ch === '/') continue;
+  if (ch >= '1' && ch <= '8') { for (let k = 0; k < +ch; k++) cell(i++, null); }
+  else cell(i++, ch);
+}
+function cell(idx, p) {
+  const r = idx >> 3, f = idx & 7, dark = (r + f) % 2 === 1;
+  const base = dark ? '#23262c' : '#34373e';
+  const d = document.createElement('div'); d.className = 'sq';
+  const layers = [];
+  if (idx === LAST[0] || idx === LAST[1]) layers.push('linear-gradient(rgba(212,170,60,.34),rgba(212,170,60,.34))');
+  if (idx === CHECK) layers.push('radial-gradient(circle, rgba(217,72,58,.6), rgba(217,72,58,0) 70%)');
+  d.style.background = (layers.length ? layers.join(',') + ',' : '') + 'linear-gradient(' + base + ',' + base + ')';
+  if (f === 0) { const c = document.createElement('span'); c.className = 'coord'; c.style.top = '2px'; c.style.left = '3px'; c.textContent = 8 - r; d.appendChild(c); }
+  if (r === 7) { const c = document.createElement('span'); c.className = 'coord'; c.style.bottom = '1px'; c.style.right = '3px'; c.textContent = 'abcdefgh'[f]; d.appendChild(c); }
+  if (p) { const img = document.createElement('img'); img.src = '../public/pieces/cburnett/' + (p === p.toUpperCase() ? 'w' : 'b') + p.toUpperCase() + '.svg'; d.appendChild(img); }
+  b.appendChild(d);
+}
+</script>
+</body>
+</html>

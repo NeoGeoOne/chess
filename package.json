@@ -1,0 +1,28 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chess in the browser: play the computer up to Stockfish, pass & play, puzzles, openings, famous games and analysis. Static site, no server, no tracking.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NeoGeoOne/chess.git"
+  },
+  "author": "NeoGeoOne",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "gen": "node tools/dc2jsx.mjs",
+    "serve": "python3 -m http.server 8941 --directory dist",
+    "test": "node --test tests/*.test.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.25.5",
+    "parse5": "^7.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

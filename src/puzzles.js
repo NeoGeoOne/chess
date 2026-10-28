@@ -1,0 +1,11 @@
+// Opening lessons. (The former hand-written puzzles were replaced by the lichess CC0 set in puzzles.data.js.)
+export const OPENINGS = [
+  { name: 'Italian Game', eco: 'C50', moves: ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4', 'Bc5', 'c3', 'Nf6', 'd3', 'd6'], desc: 'Develop fast and point the bishop at f7, the weakest square in Black’s camp. c3 and d3 build a flexible center; a calm, classical start that teaches good development.' },
+  { name: 'Ruy Lopez', eco: 'C60', moves: ['e4', 'e5', 'Nf3', 'Nc6', 'Bb5', 'a6', 'Ba4', 'Nf6', 'O-O', 'Be7'], desc: 'The Spanish. Bb5 pressures the knight that defends e5, asking a long-term question. One of the oldest and deepest openings — a lifetime opening for many world champions.' },
+  { name: 'Sicilian Defence', eco: 'B50', moves: ['e4', 'c5', 'Nf3', 'd6', 'd4', 'cxd4', 'Nxd4', 'Nf6', 'Nc3', 'a6'], desc: 'Black’s sharpest reply to e4: trade the c-pawn for White’s d-pawn and fight for the center from the side. Unbalanced positions where both sides play to win.' },
+  { name: 'French Defence', eco: 'C02', moves: ['e4', 'e6', 'd4', 'd5', 'e5', 'c5', 'c3', 'Nc6', 'Nf3', 'Qb6'], desc: 'Solid and strategic: Black concedes space, then strikes the pawn chain at its base with c5 and piece pressure. Positional players love it.' },
+  { name: 'Caro-Kann', eco: 'B12', moves: ['e4', 'c6', 'd4', 'd5', 'Nc3', 'dxe4', 'Nxe4', 'Bf5', 'Ng3', 'Bg6'], desc: 'Like the French, but the light-squared bishop gets out first. Famously sturdy — hard to attack, easy pawn structure, favorite of defensive world champions.' },
+  { name: 'Queen’s Gambit', eco: 'D30', moves: ['d4', 'd5', 'c4', 'e6', 'Nc3', 'Nf6', 'Bg5', 'Be7', 'e3', 'O-O'], desc: 'Offer the c-pawn to deflect Black’s central pawn. Usually declined; White gets lasting central pressure and classical piece play.' },
+  { name: 'London System', eco: 'D02', moves: ['d4', 'd5', 'Bf4', 'Nf6', 'e3', 'e6', 'Nf3', 'Bd6', 'Bg3', 'O-O'], desc: 'A setup, not a theory battle: the same solid structure against nearly anything Black does. Low maintenance, surprisingly venomous on the kingside.' },
+  { name: 'King’s Indian Defence', eco: 'E60', moves: ['d4', 'Nf6', 'c4', 'g6', 'Nc3', 'Bg7', 'e4', 'd6', 'Nf3', 'O-O'], desc: 'Black invites a big White center, then attacks it with pieces and the f5 break. Double-edged: White storms the queenside, Black the king.' },
+];

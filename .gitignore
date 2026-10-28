@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.png
+!public/*.png
+!docs/*.png
+.cache/

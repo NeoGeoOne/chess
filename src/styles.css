@@ -1,0 +1,27 @@
+/* Base page styles: from the design's <helmet> block, plus production additions (focus rings, no-flash background). */
+html, body { margin: 0; min-height: 100%; }
+body { background: #111214; color: #e8e8ea; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+html.light body { background: #e7e7e4; color: #16161a; }
+#app { min-height: 100vh; }
+a { color: var(--acc); }
+a:hover { color: var(--ink); }
+button, input, textarea, select { font-family: 'Instrument Sans', system-ui, sans-serif; }
+select { border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--acc, #2952e3); outline-offset: 2px; border-radius: 3px; }
+[role="button"]:focus:not(:focus-visible) { outline: none; }
+.cta { transition: transform .12s ease, filter .12s ease; }
+.cta:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.cta:active { transform: translateY(0); }
+.noscript { max-width: 520px; margin: 80px auto; padding: 0 24px; font-size: 15px; line-height: 1.6; text-align: center; }
+@keyframes ocblink { 0%, 100% { opacity: 1 } 50% { opacity: .25 } }
+@keyframes occheck { 0%, 100% { filter: brightness(1) } 50% { filter: brightness(1.32) } }
+@keyframes ocflash { 0% { filter: brightness(1.4) } 100% { filter: brightness(1) } }
+@keyframes ocpulse { 0%, 100% { transform: scale(1) } 50% { transform: scale(1.08) } }
+@keyframes ocshake { 0%, 100% { transform: translateX(0) } 20% { transform: translateX(-7px) } 40% { transform: translateX(6px) } 60% { transform: translateX(-4px) } 80% { transform: translateX(3px) } }
+@keyframes ocrise { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes ocfadein { from { opacity: 0 } to { opacity: 1 } }
+@keyframes ocring { from { opacity: 0; scale: 1.9 } to { opacity: 1; scale: 1 } }
+@keyframes ocdraw { to { stroke-dashoffset: 0 } }
+@keyframes ocscreen { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes ocup { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: translateY(0) } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
